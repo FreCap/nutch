@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Map.Entry;
 
 // APACHE imports
+import com.sun.syndication.feed.synd.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.apache.hadoop.conf.Configuration;
@@ -61,16 +62,16 @@ import com.sun.syndication.feed.synd.SyndPerson;
 import com.sun.syndication.io.SyndFeedInput;
 
 /**
- * 
+ *
  * @author dogacan
  * @author mattmann
  * @since NUTCH-444
- * 
+ *
  *        <p>
  *        A new RSS/ATOM Feed{@link Parser} that rapidly parses all referenced
  *        links and content present in the feed.
  *        </p>
- * 
+ *
  */
 public class FeedParser implements Parser {
 
@@ -94,14 +95,14 @@ public class FeedParser implements Parser {
   /**
    * Parses the given feed and extracts out and parsers all linked items within
    * the feed, using the underlying ROME feed parsing library.
-   * 
+   *
    * @param content
    *          A {@link Content} object representing the feed that is being
    *          parsed by this {@link Parser}.
-   * 
+   *
    * @return A {@link ParseResult} containing all {@link Parse}d feeds that were
    *         present in the feed file that this {@link Parser} dealt with.
-   * 
+   *
    */
   public ParseResult getParse(Content content) {
     SyndFeed feed = null;
@@ -149,21 +150,21 @@ public class FeedParser implements Parser {
   }
 
   /**
-   * 
+   *
    * Sets the {@link Configuration} object for this {@link Parser}. This
    * {@link Parser} expects the following configuration properties to be set:
-   * 
+   *
    * <ul>
    * <li>URLNormalizers - properties in the configuration object to set up the
    * default url normalizers.</li>
    * <li>URLFilters - properties in the configuration object to set up the
    * default url filters.</li>
    * </ul>
-   * 
+   *
    * @param conf
    *          The Hadoop {@link Configuration} object to use to configure this
    *          {@link Parser}.
-   * 
+   *
    */
   public void setConf(Configuration conf) {
     this.conf = conf;
@@ -175,7 +176,7 @@ public class FeedParser implements Parser {
   }
 
   /**
-   * 
+   *
    * @return The {@link Configuration} object used to configure this
    *         {@link Parser}.
    */
@@ -185,11 +186,11 @@ public class FeedParser implements Parser {
 
   /**
    * Runs a command line version of this {@link Parser}.
-   * 
+   *
    * @param args
    *          A single argument (expected at arg[0]) representing a path on the
    *          local filesystem that points to a feed file.
-   * 
+   *
    * @throws Exception
    *           If any error occurs.
    */
@@ -212,8 +213,6 @@ public class FeedParser implements Parser {
     for (Entry<Text, Parse> entry : parseResult) {
       System.out.println("key: " + entry.getKey());
       Parse parse = entry.getValue();
-      System.out.println("data: " + parse.getData());
-      System.out.println("text: " + parse.getText() + "\n");
     }
   }
 
@@ -247,7 +246,7 @@ public class FeedParser implements Parser {
     // some item descriptions contain markup text in them,
     // so we temporarily set their content-type to parse them
     // with another plugin
-    String contentType = contentMeta.get(Response.CONTENT_TYPE);
+    String contentType = "text/html-2";
 
     if (description != null)
       text = description.getValue();

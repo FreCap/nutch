@@ -22,12 +22,12 @@
 
 <parse-plugins>
 
-  <!--  by default if the mimeType is set to *, or 
+  <!--  by default if the mimeType is set to *, or
         if it can't be determined, use parse-tika -->
 	<mimeType name="*">
 	  <plugin id="parse-tika" />
 	</mimeType>
- 
+
 	<mimeType name="application/rss+xml">
 	    <plugin id="parse-tika" />
 	    <plugin id="feed" />
@@ -56,16 +56,23 @@
 	</mimeType>
 
 	<mimeType name="text/html">
+		<plugin id="parse-tika" />
+		<!--<plugin id="parse-html" /> -->
+	</mimeType>
+
+
+	<mimeType name="text/html-2">
 		<plugin id="parse-html" />
 	</mimeType>
 
-        <mimeType name="application/xhtml+xml">
-		<plugin id="parse-html" />
+	<mimeType name="application/xhtml+xml">
+		<plugin id="parse-tika" />
 	</mimeType>
 
 	<mimeType name="text/xml">
-		<plugin id="parse-tika" />
 		<plugin id="feed" />
+		<plugin id="parse-tika" />
+
 	</mimeType>
 
        <!-- Types for parse-ext plugin: required for unit tests to pass. -->
@@ -81,7 +88,7 @@
 	<!--  alias mappings for parse-xxx names to the actual extension implementation 
 	ids described in each plugin's plugin.xml file -->
 	<aliases>
-		<alias name="parse-tika" 
+		<alias name="parse-tika"
 			extension-id="org.apache.nutch.parse.tika.TikaParser" />
 		<alias name="parse-ext" extension-id="ExtParser" />
 		<alias name="parse-html"
@@ -94,5 +101,5 @@
 		<alias name="parse-zip"
 			extension-id="org.apache.nutch.parse.zip.ZipParser" />
 	</aliases>
-	
+
 </parse-plugins>

@@ -83,7 +83,7 @@
 
 <property>
   <name>http.agent.name</name>
-  <value></value>
+  <value>testTesi</value>
   <description>HTTP 'User-Agent' request header. MUST NOT be empty - 
   please set this to a single word uniquely related to your organization.
 
@@ -779,7 +779,7 @@
 
 <property>
   <name>fetcher.server.delay</name>
-  <value>5.0</value>
+  <value>0.3</value>
   <description>The number of seconds the fetcher will delay between 
    successive requests to the same server. Note that this might get
    overridden by a Crawl-Delay from a robots.txt and is used ONLY if 
@@ -1153,7 +1153,7 @@
 
 <property>
   <name>plugin.includes</name>
-  <value>protocol-http|urlfilter-regex|parse-(html|tika)|index-(basic|anchor)|indexer-solr|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+  <value>protocol-http|urlfilter-regex|parse-(tika)|index-(basic|anchor)|indexer-solr|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
   <description>Regular expression naming plugin directory names to
   include.  Any plugin not matching this expression is excluded.
   In any case you need at least include the nutch-extensionpoints plugin. By
@@ -1330,7 +1330,7 @@ CAUTION: Set the parser.timeout to -1 or a bigger value than 30, when using this
 
 <property>
   <name>tika.extractor</name>
-  <value>none</value>
+  <value>boilerpipe</value>
   <description>
   Which text extraction algorithm to use. Valid values are: boilerpipe or none.
   </description>
@@ -1744,7 +1744,7 @@ visit https://wiki.apache.org/nutch/SimilarityScoringFilter-->
 
 <property>
   <name>solr.server.url</name>
-  <value>http://127.0.0.1:8983/solr/</value>
+  <value>http://127.0.0.1:8983/solr/linkdb</value>
   <description>
       Defines the Solr URL into which data should be indexed using the
       indexer-solr plugin.
